@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live-Evo: Online Evolution of Agentic Memory</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Live-Evo</a>
+            <ul class="nav-links">
+                <li><a href="#framework">Framework</a></li>
+                <li><a href="#why">Why Live-Evo</a></li>
+                <li><a href="#performance">Performance</a></li>
+                <li><a href="#demo">Live Demo</a></li>
+                <li><a href="https://github.com/ag2ai/Live-Evo" class="btn-github">GitHub</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Live-Evo</h1>
+            <p class="subtitle">Online Evolution of Agentic Memory from Continuous Feedback</p>
+            <p class="authors">
+                Yaolun Zhang<sup>1,2,*</sup>, Yiran Wu<sup>2,3,*</sup>, Yijiong Yu<sup>1</sup>, Qingyun Wu<sup>2,3</sup>, Huazheng Wang<sup>1,2</sup>
+            </p>
+            <p class="affiliations">
+                <sup>1</sup>Oregon State University &nbsp; <sup>2</sup>AG2 AI &nbsp; <sup>3</sup>Penn State University
+            </p>
+            <div class="hero-buttons">
+                <a href="https://arxiv.org/abs/2501.xxxxx" class="btn btn-primary">Paper</a>
+                <a href="https://github.com/ag2ai/Live-Evo" class="btn btn-secondary">Code</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-value">20.8%</span>
+                    <span class="stat-label">Brier Score Improvement</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">12.9%</span>
+                    <span class="stat-label">Market Return Increase</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Abstract Section -->
+    <section class="abstract">
+        <div class="container">
+            <h2>Abstract</h2>
+            <p>
+                Large language model (LLM) agents are increasingly equipped with memory, which are stored experience and reusable guidance that can improve task-solving performance. Recent self-evolving systems update memory based on interaction outcomes, but most existing evolution pipelines are developed for static train/test splits and only approximate online learning by folding static benchmarks, making them brittle under true distribution shift and continuous feedback.
+            </p>
+            <p>
+                We introduce <strong>LIVE-EVO</strong>, an online self-evolving memory system that learns from a stream of incoming data over time. LIVE-EVO decouples <em>what happened</em> from <em>how to use it</em> via an Experience Bank and a Meta-Guideline Bank, compiling task-adaptive guidelines from retrieved experiences for each task.
+            </p>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section id="framework" class="framework">
+        <div class="container">
+            <h2>Our Framework</h2>
+            <p class="section-intro">
+                LIVE-EVO operates through a four-stage evolutionary loop: <strong>Retrieve</strong>, <strong>Compile</strong>, <strong>Act</strong>, and <strong>Update</strong>.
+            </p>
+
+            <div class="framework-image">
+                <img src="assets/images/fig2public.png" alt="Live-Evo Framework Architecture">
+            </div>
+
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <div class="stage-number">1</div>
+                    <h3>Retrieve</h3>
+                    <p>Given a task, the agent generates queries to retrieve relevant question-experience pairs from the Experience Bank, weighted by learned experience scores.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">2</div>
+                    <h3>Compile</h3>
+                    <p>Retrieved experiences are compiled into a task-specific guideline, instructed by Meta-Guidelines that encode meta-heuristics for combining historical insights.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">3</div>
+                    <h3>Act</h3>
+                    <p>The agent performs ContrastiveEval by producing two independent predictions - one guided by the compiled guideline and one as a memory-free baseline.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">4</div>
+                    <h3>Update</h3>
+                    <p>Experience weights are updated based on observed performance gaps. If the guideline underperforms, a new meta-guideline is generated.</p>
+                </div>
+            </div>
+
+            <div class="memory-banks">
+                <div class="bank-card">
+                    <h3>Experience Bank</h3>
+                    <p>Stores past task interactions in a structured, reusable form. Each experience includes the question, failure reason, improvement suggestions, and missed information.</p>
+                </div>
+                <div class="bank-card">
+                    <h3>Meta-Guideline Bank</h3>
+                    <p>Stores higher-level composition instructions that specify how to transform retrieved experiences into task-adaptive guidelines under different conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Live-Evo Section -->
+    <section id="why" class="why-section">
+        <div class="container">
+            <h2>Why Live-Evo?</h2>
+
+            <div class="comparison">
+                <div class="comparison-card traditional">
+                    <h3>Traditional Self-Evolving Memory</h3>
+                    <div class="comparison-diagram">
+                        <div class="diagram-row">
+                            <div class="diagram-box train">Train Set</div>
+                            <div class="diagram-arrow">Build</div>
+                            <div class="diagram-box memory">Memory</div>
+                            <div class="diagram-arrow">Test</div>
+                            <div class="diagram-box test">Test Set</div>
+                        </div>
+                    </div>
+                    <ul class="limitations">
+                        <li>Static train/test split</li>
+                        <li>Memory frozen at test time</li>
+                        <li>Brittle under distribution shift</li>
+                        <li>Cannot adapt to new patterns</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card live">
+                    <h3>Live-Evo (Our Approach)</h3>
+                    <div class="comparison-diagram">
+                        <div class="diagram-row continuous">
+                            <div class="week-box">Week 1</div>
+                            <div class="week-box">Week 2</div>
+                            <div class="week-box">...</div>
+                            <div class="week-box">Week k</div>
+                        </div>
+                        <div class="memory-evolve">Memory continuously evolves</div>
+                    </div>
+                    <ul class="advantages">
+                        <li>Continuous memory evolution</li>
+                        <li>Learns from streaming feedback</li>
+                        <li>Adapts to distribution shift</li>
+                        <li>Reinforcement-and-decay dynamics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="key-innovations">
+                <h3>Key Innovations</h3>
+                <div class="innovations-grid">
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x1F9E0;</div>
+                        <h4>Decoupled Memory</h4>
+                        <p>Separates <em>what happened</em> (Experience Bank) from <em>how to use it</em> (Meta-Guideline Bank)</p>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x2696;</div>
+                        <h4>Contrastive Evaluation</h4>
+                        <p>Quantifies the causal impact of memory by comparing guided vs. memory-free predictions</p>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x1F504;</div>
+                        <h4>Adaptive Weighting</h4>
+                        <p>Reinforces helpful experiences and gradually forgets misleading ones, like human memory</p>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x2705;</div>
+                        <h4>Selective Acquisition</h4>
+                        <p>Only commits new experiences after re-evaluation confirms measurable improvement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="performance">
+        <div class="container">
+            <h2>Performance</h2>
+
+            <div class="results-intro">
+                <p>Evaluated on <strong>Prophet Arena</strong>, a future-prediction benchmark spanning 10 weeks with 500 tasks, Live-Evo significantly outperforms all baselines.</p>
+            </div>
+
+            <div class="results-table-container">
+                <h3>Brier Score Results (Lower is Better)</h3>
+                <table class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Model</th>
+                            <th>W1</th>
+                            <th>W2</th>
+                            <th>W3</th>
+                            <th>W4</th>
+                            <th>W5</th>
+                            <th>W6</th>
+                            <th>W7</th>
+                            <th>W8</th>
+                            <th>W9</th>
+                            <th>W10</th>
+                            <th>Avg</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GPT-4.1-mini</td>
+                            <td>0.18</td>
+                            <td>0.20</td>
+                            <td>0.31</td>
+                            <td>0.18</td>
+                            <td>0.24</td>
+                            <td>0.26</td>
+                            <td>0.23</td>
+                            <td>0.25</td>
+                            <td>0.23</td>
+                            <td>0.15</td>
+                            <td>0.22</td>
+                        </tr>
+                        <tr>
+                            <td>Qwen Deep Research</td>
+                            <td>0.17</td>
+                            <td>0.22</td>
+                            <td>0.23</td>
+                            <td>0.15</td>
+                            <td>0.22</td>
+                            <td>0.22</td>
+                            <td>0.21</td>
+                            <td>0.19</td>
+                            <td>0.20</td>
+                            <td>0.13</td>
+                            <td>0.20</td>
+                        </tr>
+                        <tr>
+                            <td>ReMem</td>
+                            <td>0.19</td>
+                            <td>0.23</td>
+                            <td>0.14</td>
+                            <td>0.11</td>
+                            <td>0.21</td>
+                            <td>0.18</td>
+                            <td>0.19</td>
+                            <td>0.17</td>
+                            <td>0.15</td>
+                            <td>0.11</td>
+                            <td>0.16</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td><strong>Live-Evo (Ours)</strong></td>
+                            <td><strong>0.19</strong></td>
+                            <td><strong>0.17</strong></td>
+                            <td><strong>0.16</strong></td>
+                            <td><strong>0.10</strong></td>
+                            <td><strong>0.17</strong></td>
+                            <td><strong>0.12</strong></td>
+                            <td><strong>0.19</strong></td>
+                            <td><strong>0.15</strong></td>
+                            <td><strong>0.13</strong></td>
+                            <td><strong>0.10</strong></td>
+                            <td><strong>0.14</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-card">
+                    <h3>Cumulative Portfolio Value</h3>
+                    <img src="assets/images/cumulative_portfolio_value.png" alt="Cumulative Portfolio Value">
+                    <p class="chart-caption">Investing $100 per week, Live-Evo achieves $1,408 vs $1,247 without experience - a $161 advantage over 10 weeks.</p>
+                </div>
+                <div class="chart-card">
+                    <h3>Brier Score Comparison</h3>
+                    <img src="assets/images/brier_score_comparison.png" alt="Brier Score Comparison">
+                    <p class="chart-caption">Live-Evo consistently outperforms the base agent, especially during volatile periods (Weeks 5-6).</p>
+                </div>
+            </div>
+
+            <div class="generalization">
+                <h3>Generalization Across Models</h3>
+                <table class="results-table compact">
+                    <thead>
+                        <tr>
+                            <th>Base Model</th>
+                            <th>Brier Score</th>
+                            <th>Improvement</th>
+                            <th>Market Return</th>
+                            <th>Improvement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GPT-4.1-mini</td>
+                            <td>0.14</td>
+                            <td class="positive">+20.8%</td>
+                            <td>1.46</td>
+                            <td class="positive">+12.9%</td>
+                        </tr>
+                        <tr>
+                            <td>GPT-4.1</td>
+                            <td>0.17</td>
+                            <td class="positive">+3.0%</td>
+                            <td>1.18</td>
+                            <td class="positive">+4.4%</td>
+                        </tr>
+                        <tr>
+                            <td>GPT-5-mini</td>
+                            <td>0.15</td>
+                            <td class="positive">+4.5%</td>
+                            <td>1.36</td>
+                            <td class="positive">+1.6%</td>
+                        </tr>
+                        <tr>
+                            <td>Qwen3-8B</td>
+                            <td>0.18</td>
+                            <td class="positive">+3.5%</td>
+                            <td>1.21</td>
+                            <td class="positive">+0.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <h2>Live Pipeline Demo</h2>
+            <p class="section-intro">See how Live-Evo processes a prediction task through its four-stage pipeline.</p>
+
+            <div class="demo-container">
+                <div class="demo-sidebar">
+                    <div class="step-buttons">
+                        <button class="step-btn active" data-step="1">1. Task Input</button>
+                        <button class="step-btn" data-step="2">2. Retrieve</button>
+                        <button class="step-btn" data-step="3">3. Compile</button>
+                        <button class="step-btn" data-step="4">4. Act</button>
+                        <button class="step-btn" data-step="5">5. Update</button>
+                    </div>
+                </div>
+
+                <div class="demo-content">
+                    <!-- Step 1: Task Input -->
+                    <div class="demo-step active" id="step-1">
+                        <h3>Task Input</h3>
+                        <div class="task-box">
+                            <div class="task-label">Question:</div>
+                            <p>Which professional football team, Cincinnati or Pittsburgh, will win the game scheduled for Oct 16, 2025?</p>
+                            <div class="task-options">
+                                <span class="option">Cincinnati</span>
+                                <span class="option">Pittsburgh</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Retrieve -->
+                    <div class="demo-step" id="step-2">
+                        <h3>Retrieve Relevant Experiences</h3>
+                        <div class="experience-cards">
+                            <div class="exp-card">
+                                <div class="exp-header">Experience #1 (Sports/NCAAF)</div>
+                                <div class="exp-content">
+                                    <strong>Failure Reason:</strong> Over-relied on pre-game betting odds and recent season trends without accounting for roster changes or "home advantage" dynamics.
+                                    <br><br>
+                                    <strong>Improvement:</strong> Incorporate dynamic, up-to-date info (roster, coaching) as the event approaches. Avoid static betting odds.
+                                </div>
+                                <div class="exp-weight">Weight: 1.45</div>
+                            </div>
+                            <div class="exp-card">
+                                <div class="exp-header">Experience #2 (Sports/MLS)</div>
+                                <div class="exp-content">
+                                    <strong>Failure Reason:</strong> Failed to update prediction to reflect rescheduling of the match, basing probabilities on outdated timing.
+                                    <br><br>
+                                    <strong>Improvement:</strong> Always verify the event date and confirm the prediction is relative to the current schedule.
+                                </div>
+                                <div class="exp-weight">Weight: 1.32</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Compile -->
+                    <div class="demo-step" id="step-3">
+                        <h3>Compile Task-Specific Guideline</h3>
+                        <div class="guideline-box">
+                            <h4>Synthesized Guideline</h4>
+                            <ul>
+                                <li><strong>Dynamic Information:</strong> Prioritize authoritative sources (e.g., official injury reports, press releases) close to the game date over early betting odds or historical reputation.</li>
+                                <li><strong>Schedule Verification:</strong> Implement a workflow step to confirm the exact game date and update contextual data to avoid outdated inputs.</li>
+                                <li><strong>Scenario Analysis:</strong> Explicitly model the impact of key player absences (e.g., injury reports) and home vs. away advantages.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Act -->
+                    <div class="demo-step" id="step-4">
+                        <h3>Contrastive Evaluation</h3>
+                        <div class="prediction-comparison">
+                            <div class="prediction-card baseline">
+                                <h4>Without Memory</h4>
+                                <div class="prediction-bar">
+                                    <div class="bar-fill" style="width: 35%">Cincinnati: 35%</div>
+                                </div>
+                                <div class="prediction-bar">
+                                    <div class="bar-fill pitts" style="width: 65%">Pittsburgh: 65%</div>
+                                </div>
+                                <p class="reasoning">Relied on Pittsburgh's 4-1 record and winning streak. Heavily weighted betting odds favoring Steelers.</p>
+                                <div class="brier-score">Brier Score: 0.5329</div>
+                            </div>
+                            <div class="prediction-card guided">
+                                <h4>With Memory Guideline</h4>
+                                <div class="prediction-bar">
+                                    <div class="bar-fill" style="width: 55%">Cincinnati: 55%</div>
+                                </div>
+                                <div class="prediction-bar">
+                                    <div class="bar-fill pitts" style="width: 45%">Pittsburgh: 45%</div>
+                                </div>
+                                <p class="reasoning">Identified close 33-31 victory conditions. Weighed resilience despite injuries and home advantage more heavily than static odds.</p>
+                                <div class="brier-score good">Brier Score: 0.2500</div>
+                            </div>
+                        </div>
+                        <div class="ground-truth">
+                            <strong>Ground Truth:</strong> Cincinnati won!
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Update -->
+                    <div class="demo-step" id="step-5">
+                        <h3>Update Memory</h3>
+                        <div class="update-summary">
+                            <div class="update-item positive">
+                                <span class="update-icon">&#x2191;</span>
+                                <div class="update-content">
+                                    <strong>Experience weights increased</strong>
+                                    <p>Retrieved experiences helped improve prediction (Brier improvement: 0.2829)</p>
+                                </div>
+                            </div>
+                            <div class="update-item">
+                                <span class="update-icon">&#x2713;</span>
+                                <div class="update-content">
+                                    <strong>No new meta-guideline needed</strong>
+                                    <p>Memory-guided prediction outperformed baseline</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weight-evolution">
+                            <img src="assets/images/case_study.png" alt="Experience Weight Evolution">
+                            <p class="chart-caption">Positive experiences (green) are reinforced over time, while negative experiences (red) are gradually forgotten.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Citation Section -->
+    <section class="citation">
+        <div class="container">
+            <h2>Citation</h2>
+            <div class="citation-box">
+                <pre><code>@article{zhang2025liveevo,
+  title={Live-Evo: Online Evolution of Agentic Memory from Continuous Feedback},
+  author={Zhang, Yaolun and Wu, Yiran and Yu, Yijiong and Wu, Qingyun and Wang, Huazheng},
+  journal={arXiv preprint arXiv:2501.xxxxx},
+  year={2025}
+}</code></pre>
+                <button class="copy-btn" onclick="copyBibtex()">Copy BibTeX</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo">Live-Evo</span>
+                    <p>An AG2 AI Research Project</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/ag2ai/Live-Evo">GitHub</a>
+                    <a href="https://arxiv.org/abs/2501.xxxxx">Paper</a>
+                    <a href="https://ag2.ai">AG2 AI</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AG2 AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
