@@ -17,6 +17,68 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Interactive Prediction Game
+    const predictionCards = document.querySelectorAll('.prediction-game-card');
+    let answeredCount = 0;
+    let correctCount = 0;
+    const totalCards = predictionCards.length;
+
+    predictionCards.forEach(card => {
+        const choiceBtns = card.querySelectorAll('.choice-btn');
+        const resultDiv = card.querySelector('.card-result');
+
+        choiceBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Prevent re-clicking
+                if (card.classList.contains('revealed')) return;
+
+                // Mark card as revealed
+                card.classList.add('revealed');
+                answeredCount++;
+
+                // Disable all buttons
+                choiceBtns.forEach(b => b.disabled = true);
+
+                // Check if correct
+                const isCorrect = this.getAttribute('data-correct') === 'true';
+
+                if (isCorrect) {
+                    this.classList.add('correct-choice');
+                    correctCount++;
+                } else {
+                    this.classList.add('wrong-choice');
+                    // Highlight the correct one
+                    choiceBtns.forEach(b => {
+                        if (b.getAttribute('data-correct') === 'true') {
+                            b.classList.add('correct-choice');
+                        }
+                    });
+                }
+
+                // Show results
+                resultDiv.classList.remove('hidden');
+
+                // Check if all cards answered
+                if (answeredCount === totalCards) {
+                    showFinalScore();
+                }
+            });
+        });
+    });
+
+    function showFinalScore() {
+        const scoreSection = document.getElementById('game-score');
+        const yourScoreEl = document.getElementById('your-score');
+
+        scoreSection.classList.remove('hidden');
+        yourScoreEl.textContent = `${correctCount}/${totalCards}`;
+
+        // Scroll to score
+        setTimeout(() => {
+            scoreSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
+    }
+
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {

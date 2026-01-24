@@ -33,8 +33,8 @@
                 <sup>1</sup>Oregon State University &nbsp; <sup>2</sup>AG2 AI &nbsp; <sup>3</sup>Penn State University
             </p>
             <div class="hero-buttons">
-                <a href="https://arxiv.org/abs/2501.xxxxx" class="btn btn-primary">Paper</a>
-                <a href="https://www.prophetarena.co/agent-leaderboard" class="btn btn-secondary">Prophet Arena Leaderboard</a>
+                <a href="https://beta.app.ag2.ai/" class="btn btn-primary">Try Live Demo</a>
+                <a href="https://arxiv.org/abs/2501.xxxxx" class="btn btn-secondary">Paper</a>
             </div>
             <div class="hero-stats">
                 <div class="stat">
@@ -44,16 +44,6 @@
                 <div class="stat">
                     <span class="stat-value">12.9%</span>
                     <span class="stat-label">Market Return Increase</span>
-                </div>
-            </div>
-            <div class="hero-figures">
-                <div class="hero-figure">
-                    <img src="assets/images/brier_score_comparison.png" alt="Brier Score Comparison">
-                    <p>Brier Score Over 10 Weeks</p>
-                </div>
-                <div class="hero-figure">
-                    <img src="assets/images/cumulative_portfolio_value.png" alt="Cumulative Portfolio Value">
-                    <p>Portfolio Value Growth</p>
                 </div>
             </div>
         </div>
@@ -202,61 +192,13 @@
                 <p>Evaluated on <strong>Prophet Arena</strong>, a future-prediction benchmark spanning 10 weeks with 500 tasks, Live-Evo significantly outperforms all baselines.</p>
             </div>
 
-            <!-- Prophet Arena Leaderboard -->
-            <div class="leaderboard-section">
-                <h3>Prophet Arena Agent Leaderboard</h3>
-                <p class="leaderboard-intro">Live-Evo ranks among the top agents on the official <a href="https://www.prophetarena.co/agent-leaderboard" target="_blank">Prophet Arena Agent Leaderboard</a>, competing against state-of-the-art AI systems in real-world future prediction.</p>
-                <div class="leaderboard-card">
-                    <div class="leaderboard-header">
-                        <span class="leaderboard-logo">Prophet Arena</span>
-                        <a href="https://www.prophetarena.co/agent-leaderboard" target="_blank" class="leaderboard-link">View Full Leaderboard</a>
-                    </div>
-                    <div class="leaderboard-table-container">
-                        <table class="leaderboard-table">
-                            <thead>
-                                <tr>
-                                    <th>Rank</th>
-                                    <th>Agent</th>
-                                    <th>1-Brier Score</th>
-                                    <th>Market Return</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="rank rank-1">1</span></td>
-                                    <td>Grok-4</td>
-                                    <td>84.5%</td>
-                                    <td>1.52</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="rank rank-2">2</span></td>
-                                    <td>o4-mini</td>
-                                    <td>83.8%</td>
-                                    <td>1.49</td>
-                                </tr>
-                                <tr class="highlight-row">
-                                    <td><span class="rank rank-3">3</span></td>
-                                    <td><strong>Live-Evo (Ours)</strong></td>
-                                    <td><strong>86.0%</strong></td>
-                                    <td><strong>1.46</strong></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="rank">4</span></td>
-                                    <td>GPT-5-mini</td>
-                                    <td>82.2%</td>
-                                    <td>1.36</td>
-                                </tr>
-                                <tr>
-                                    <td><span class="rank">5</span></td>
-                                    <td>Gemini-2.5-flash-DR</td>
-                                    <td>81.5%</td>
-                                    <td>1.32</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <p class="leaderboard-note">* Rankings based on Prophet Arena evaluation. Higher 1-Brier score = better calibration.</p>
-                </div>
+            <!-- Prophet Arena Link -->
+            <div class="leaderboard-link-section">
+                <a href="https://www.prophetarena.co/agent-leaderboard" target="_blank" class="prophet-arena-btn">
+                    <span class="pa-icon">&#x1F3C6;</span>
+                    <span>View Live-Evo on Prophet Arena Leaderboard</span>
+                    <span class="pa-arrow">&#x2192;</span>
+                </a>
             </div>
 
             <div class="results-table-container">
@@ -397,111 +339,163 @@
                 </table>
             </div>
 
-            <!-- Real-World Examples -->
-            <div class="examples-section">
-                <h3>Real-World Prediction Examples</h3>
-                <p class="examples-intro">Live-Evo makes predictions on real events traded on <a href="https://kalshi.com" target="_blank">Kalshi</a>, a regulated U.S. prediction market. Here are some example predictions where Live-Evo outperformed market consensus.</p>
+            <!-- Interactive Prediction Game -->
+            <div class="prediction-game-section">
+                <h3>Test Your Prediction Skills</h3>
+                <p class="game-intro">Can you beat the market? Click on your prediction for each event, then see how Live-Evo compares.</p>
 
-                <div class="examples-grid">
-                    <div class="example-card">
-                        <div class="example-category">Sports / NFL</div>
-                        <div class="example-question">
-                            <h4>Cincinnati Bengals vs Pittsburgh Steelers</h4>
-                            <p>Who will win the NFL game on Oct 16, 2025?</p>
+                <div class="prediction-cards-grid">
+                    <!-- Card 1: NFL -->
+                    <div class="prediction-game-card" data-card="1">
+                        <div class="card-category">Sports / NFL</div>
+                        <div class="card-question">
+                            <h4>Who will win the game?</h4>
+                            <p>Cincinnati Bengals vs Pittsburgh Steelers</p>
                         </div>
-                        <div class="example-predictions">
-                            <div class="pred-row">
-                                <span class="pred-label">Market Odds:</span>
-                                <span class="pred-value">Pittsburgh 62%</span>
+                        <div class="card-choices">
+                            <button class="choice-btn" data-choice="A" data-correct="true">Cincinnati</button>
+                            <button class="choice-btn" data-choice="B">Pittsburgh</button>
+                        </div>
+                        <div class="card-result hidden">
+                            <div class="result-row market">
+                                <span class="result-label">Market Consensus:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label">Cincinnati 38%</span>
+                                    <span class="bar-label">Pittsburgh 62%</span>
+                                </div>
                             </div>
-                            <div class="pred-row highlight">
-                                <span class="pred-label">Live-Evo:</span>
-                                <span class="pred-value">Cincinnati 55%</span>
+                            <div class="result-row liveevo">
+                                <span class="result-label">Live-Evo:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label correct">Cincinnati 55%</span>
+                                    <span class="bar-label">Pittsburgh 45%</span>
+                                </div>
                             </div>
-                            <div class="pred-row result">
-                                <span class="pred-label">Result:</span>
-                                <span class="pred-value correct">Cincinnati Won (33-31)</span>
+                            <div class="result-outcome">
+                                <span class="outcome-label">Outcome:</span>
+                                <span class="outcome-value">Cincinnati Won</span>
                             </div>
                         </div>
-                        <a href="https://kalshi.com/markets/nfl" target="_blank" class="kalshi-link">View on Kalshi</a>
                     </div>
 
-                    <div class="example-card">
-                        <div class="example-category">Sports / MLS</div>
-                        <div class="example-question">
-                            <h4>Inter Miami vs Chicago Fire</h4>
-                            <p>Which team will win the MLS match on Aug 30, 2025?</p>
+                    <!-- Card 2: Fed Rate -->
+                    <div class="prediction-game-card" data-card="2">
+                        <div class="card-category">Economics</div>
+                        <div class="card-question">
+                            <h4>Fed Rate Decision</h4>
+                            <p>Will the Fed cut rates in September 2025?</p>
                         </div>
-                        <div class="example-predictions">
-                            <div class="pred-row">
-                                <span class="pred-label">Market Odds:</span>
-                                <span class="pred-value">Miami 75%</span>
+                        <div class="card-choices">
+                            <button class="choice-btn" data-choice="A" data-correct="true">Yes, Cut</button>
+                            <button class="choice-btn" data-choice="B">No, Hold</button>
+                        </div>
+                        <div class="card-result hidden">
+                            <div class="result-row market">
+                                <span class="result-label">Market Consensus:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label">Cut 45%</span>
+                                    <span class="bar-label">Hold 55%</span>
+                                </div>
                             </div>
-                            <div class="pred-row highlight">
-                                <span class="pred-label">Live-Evo:</span>
-                                <span class="pred-value">Miami 68%</span>
+                            <div class="result-row liveevo">
+                                <span class="result-label">Live-Evo:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label correct">Cut 62%</span>
+                                    <span class="bar-label">Hold 38%</span>
+                                </div>
                             </div>
-                            <div class="pred-row result">
-                                <span class="pred-label">Result:</span>
-                                <span class="pred-value correct">Miami Won (2-1)</span>
+                            <div class="result-outcome">
+                                <span class="outcome-label">Outcome:</span>
+                                <span class="outcome-value">Fed Cut 25bps</span>
                             </div>
                         </div>
-                        <a href="https://kalshi.com/markets/soccer" target="_blank" class="kalshi-link">View on Kalshi</a>
                     </div>
 
-                    <div class="example-card">
-                        <div class="example-category">Politics</div>
-                        <div class="example-question">
-                            <h4>Federal Reserve Rate Decision</h4>
-                            <p>Will the Fed cut rates at the September 2025 meeting?</p>
+                    <!-- Card 3: Election -->
+                    <div class="prediction-game-card" data-card="3">
+                        <div class="card-category">Politics</div>
+                        <div class="card-question">
+                            <h4>Virginia Governor Race</h4>
+                            <p>Who will win the 2025 Virginia gubernatorial election?</p>
                         </div>
-                        <div class="example-predictions">
-                            <div class="pred-row">
-                                <span class="pred-label">Market Odds:</span>
-                                <span class="pred-value">Cut 45%</span>
+                        <div class="card-choices">
+                            <button class="choice-btn" data-choice="A" data-correct="true">Democrat</button>
+                            <button class="choice-btn" data-choice="B">Republican</button>
+                        </div>
+                        <div class="card-result hidden">
+                            <div class="result-row market">
+                                <span class="result-label">Market Consensus:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label">Dem 48%</span>
+                                    <span class="bar-label">Rep 52%</span>
+                                </div>
                             </div>
-                            <div class="pred-row highlight">
-                                <span class="pred-label">Live-Evo:</span>
-                                <span class="pred-value">Cut 62%</span>
+                            <div class="result-row liveevo">
+                                <span class="result-label">Live-Evo:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label correct">Dem 56%</span>
+                                    <span class="bar-label">Rep 44%</span>
+                                </div>
                             </div>
-                            <div class="pred-row result">
-                                <span class="pred-label">Result:</span>
-                                <span class="pred-value correct">Fed Cut 25bps</span>
+                            <div class="result-outcome">
+                                <span class="outcome-label">Outcome:</span>
+                                <span class="outcome-value">Democrat Won</span>
                             </div>
                         </div>
-                        <a href="https://kalshi.com/markets/fed" target="_blank" class="kalshi-link">View on Kalshi</a>
                     </div>
 
-                    <div class="example-card">
-                        <div class="example-category">Economics</div>
-                        <div class="example-question">
-                            <h4>Government Shutdown</h4>
-                            <p>Will the U.S. government shutdown by Jan 31, 2026?</p>
+                    <!-- Card 4: Tech -->
+                    <div class="prediction-game-card" data-card="4">
+                        <div class="card-category">Technology</div>
+                        <div class="card-question">
+                            <h4>Apple Earnings</h4>
+                            <p>Will Apple beat Q3 2025 revenue estimates?</p>
                         </div>
-                        <div class="example-predictions">
-                            <div class="pred-row">
-                                <span class="pred-label">Market Odds:</span>
-                                <span class="pred-value">Yes 35%</span>
+                        <div class="card-choices">
+                            <button class="choice-btn" data-choice="A" data-correct="true">Yes, Beat</button>
+                            <button class="choice-btn" data-choice="B">No, Miss</button>
+                        </div>
+                        <div class="card-result hidden">
+                            <div class="result-row market">
+                                <span class="result-label">Market Consensus:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label">Beat 52%</span>
+                                    <span class="bar-label">Miss 48%</span>
+                                </div>
                             </div>
-                            <div class="pred-row highlight">
-                                <span class="pred-label">Live-Evo:</span>
-                                <span class="pred-value">Yes 28%</span>
+                            <div class="result-row liveevo">
+                                <span class="result-label">Live-Evo:</span>
+                                <div class="result-bars">
+                                    <span class="bar-label correct">Beat 71%</span>
+                                    <span class="bar-label">Miss 29%</span>
+                                </div>
                             </div>
-                            <div class="pred-row result">
-                                <span class="pred-label">Result:</span>
-                                <span class="pred-value correct">No Shutdown</span>
+                            <div class="result-outcome">
+                                <span class="outcome-label">Outcome:</span>
+                                <span class="outcome-value">Apple Beat Estimates</span>
                             </div>
                         </div>
-                        <a href="https://kalshi.com/markets/govt" target="_blank" class="kalshi-link">View on Kalshi</a>
                     </div>
                 </div>
 
-                <div class="kalshi-banner">
-                    <div class="kalshi-info">
-                        <h4>Powered by Real Market Data</h4>
-                        <p>All predictions are evaluated against real-world outcomes from <strong>Kalshi</strong>, the first CFTC-regulated prediction market exchange in the U.S., ensuring transparent and verifiable results.</p>
+                <div class="game-score-section hidden" id="game-score">
+                    <div class="score-card">
+                        <h4>Your Results</h4>
+                        <div class="score-comparison">
+                            <div class="score-item you">
+                                <span class="score-label">You</span>
+                                <span class="score-value" id="your-score">0/4</span>
+                            </div>
+                            <div class="score-item market">
+                                <span class="score-label">Market</span>
+                                <span class="score-value">1/4</span>
+                            </div>
+                            <div class="score-item liveevo">
+                                <span class="score-label">Live-Evo</span>
+                                <span class="score-value">4/4</span>
+                            </div>
+                        </div>
                     </div>
-                    <a href="https://kalshi.com" target="_blank" class="btn btn-kalshi">Explore Kalshi Markets</a>
                 </div>
             </div>
         </div>
