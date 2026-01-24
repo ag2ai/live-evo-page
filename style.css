@@ -976,7 +976,7 @@ body {
 }
 
 .prediction-game-section h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 15px;
     color: var(--dark-color);
     text-align: center;
@@ -991,217 +991,175 @@ body {
 
 .prediction-cards-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .prediction-game-card {
     background: white;
-    border-radius: 16px;
-    padding: 25px;
-    border: 2px solid var(--border-color);
-    transition: all 0.3s;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid transparent;
 }
 
 .prediction-game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.12);
     border-color: var(--primary-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.prediction-game-card.revealed {
-    border-color: var(--secondary-color);
+.card-front, .card-back {
+    padding: 28px;
 }
 
 .card-category {
     display: inline-block;
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     color: white;
-    padding: 4px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .card-question h4 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--dark-color);
     margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .card-question p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: var(--text-light);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    line-height: 1.5;
 }
 
 .card-choices {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .choice-btn {
-    padding: 14px 20px;
+    flex: 1;
+    padding: 16px 20px;
     border: 2px solid var(--border-color);
-    border-radius: 10px;
+    border-radius: 12px;
     background: white;
     cursor: pointer;
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 1rem;
     transition: all 0.3s;
     color: var(--dark-color);
 }
 
 .choice-btn:hover {
     border-color: var(--primary-color);
-    background: #f0f5ff;
+    background: linear-gradient(135deg, #f0f5ff, #e8f0fe);
+    transform: scale(1.02);
 }
 
-.choice-btn.selected {
-    border-color: var(--primary-color);
-    background: var(--primary-color);
-    color: white;
+.choice-btn:active {
+    transform: scale(0.98);
 }
 
-.choice-btn.correct-choice {
-    border-color: var(--secondary-color);
-    background: #ecfdf5;
-    color: var(--secondary-color);
+/* Card Back - Results */
+.your-pick {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-align: center;
 }
 
-.choice-btn.wrong-choice {
-    border-color: #ef4444;
-    background: #fef2f2;
-    color: #ef4444;
+.your-pick.correct {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+    color: #166534;
 }
 
-.choice-btn:disabled {
-    cursor: default;
+.your-pick.wrong {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    color: #991b1b;
 }
 
-.card-result {
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 2px solid var(--border-color);
-    animation: fadeIn 0.5s ease;
-}
-
-.card-result.hidden {
-    display: none;
+.result-section {
+    margin-bottom: 20px;
 }
 
 .result-row {
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .result-label {
     font-size: 0.8rem;
     color: var(--text-light);
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-bottom: 8px;
     display: block;
-    margin-bottom: 6px;
 }
 
-.result-bars {
-    display: flex;
-    gap: 10px;
-}
-
-.bar-label {
-    padding: 6px 12px;
-    background: var(--light-color);
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 500;
-}
-
-.bar-label.correct {
-    background: #dcfce7;
-    color: #166534;
-    font-weight: 700;
-}
-
-.result-row.liveevo .result-label {
+.liveevo-row .result-label {
     color: var(--secondary-color);
 }
 
-.result-outcome {
-    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-    padding: 12px 16px;
-    border-radius: 10px;
+.result-bar-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
+    gap: 8px;
 }
 
-.outcome-label {
+.result-bar {
+    border-radius: 8px;
+    padding: 10px 14px;
     font-size: 0.85rem;
-    color: var(--text-light);
     font-weight: 600;
-}
-
-.outcome-value {
-    font-weight: 700;
-    color: var(--secondary-color);
-}
-
-/* Score Section */
-.game-score-section {
-    margin-top: 40px;
-}
-
-.game-score-section.hidden {
-    display: none;
-}
-
-.score-card {
-    background: linear-gradient(135deg, var(--dark-color), #334155);
-    border-radius: 16px;
-    padding: 30px 40px;
+    color: white;
+    min-width: 80px;
     text-align: center;
 }
 
-.score-card h4 {
-    color: white;
-    font-size: 1.3rem;
-    margin-bottom: 25px;
+.result-bar span {
+    white-space: nowrap;
 }
 
-.score-comparison {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
+.market-bar {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
 }
 
-.score-item {
+.liveevo-bar {
+    background: linear-gradient(135deg, #6ee7b7, #34d399);
+}
+
+.liveevo-bar.winner {
+    background: linear-gradient(135deg, var(--secondary-color), #059669);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.outcome-box {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    padding: 16px 20px;
+    border-radius: 12px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-}
-
-.score-item .score-label {
-    color: #94a3b8;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-}
-
-.score-item .score-value {
-    font-size: 2rem;
+    justify-content: center;
+    gap: 10px;
     font-weight: 700;
-    color: white;
+    color: #166534;
+    font-size: 1.05rem;
 }
 
-.score-item.liveevo .score-value {
+.outcome-icon {
+    font-size: 1.2rem;
     color: var(--secondary-color);
-}
-
-.score-item.you .score-value {
-    color: var(--primary-color);
 }
 
 /* Responsive Design */
@@ -1234,13 +1192,6 @@ body {
         text-align: center;
     }
 
-    .prediction-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .score-comparison {
-        gap: 30px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1303,12 +1254,15 @@ body {
         grid-template-columns: 1fr;
     }
 
-    .score-comparison {
+    .card-choices {
         flex-direction: column;
-        gap: 20px;
     }
 
-    .score-item .score-value {
-        font-size: 1.5rem;
+    .result-bar-container {
+        flex-direction: column;
+    }
+
+    .result-bar {
+        width: 100% !important;
     }
 }

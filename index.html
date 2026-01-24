@@ -34,17 +34,8 @@
             </p>
             <div class="hero-buttons">
                 <a href="https://beta.app.ag2.ai/" class="btn btn-primary">Try Live Demo</a>
-                <a href="https://arxiv.org/abs/2501.xxxxx" class="btn btn-secondary">Paper</a>
-            </div>
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-value">20.8%</span>
-                    <span class="stat-label">Brier Score Improvement</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-value">12.9%</span>
-                    <span class="stat-label">Market Return Increase</span>
-                </div>
+                <a href="https://github.com/ag2ai/Live-Evo" class="btn btn-secondary">Code</a>
+                <a href="https://www.prophetarena.co/agent-leaderboard" class="btn btn-secondary">Prophet Arena</a>
             </div>
         </div>
     </header>
@@ -342,157 +333,193 @@
             <!-- Interactive Prediction Game -->
             <div class="prediction-game-section">
                 <h3>Test Your Prediction Skills</h3>
-                <p class="game-intro">Can you beat the market? Click on your prediction for each event, then see how Live-Evo compares.</p>
+                <p class="game-intro">Can you beat the market? Click on your prediction for each event to reveal the results.</p>
 
                 <div class="prediction-cards-grid">
                     <!-- Card 1: NFL -->
-                    <div class="prediction-game-card" data-card="1">
-                        <div class="card-category">Sports / NFL</div>
-                        <div class="card-question">
-                            <h4>Who will win the game?</h4>
-                            <p>Cincinnati Bengals vs Pittsburgh Steelers</p>
+                    <div class="prediction-game-card" id="card-1">
+                        <div class="card-front">
+                            <div class="card-category">Sports / NFL</div>
+                            <div class="card-question">
+                                <h4>Who will win the game?</h4>
+                                <p>Cincinnati Bengals vs Pittsburgh Steelers</p>
+                            </div>
+                            <div class="card-choices">
+                                <button class="choice-btn" onclick="revealCard('card-1', 'Cincinnati', true)">Cincinnati</button>
+                                <button class="choice-btn" onclick="revealCard('card-1', 'Pittsburgh', false)">Pittsburgh</button>
+                            </div>
                         </div>
-                        <div class="card-choices">
-                            <button class="choice-btn" data-choice="A" data-correct="true">Cincinnati</button>
-                            <button class="choice-btn" data-choice="B">Pittsburgh</button>
-                        </div>
-                        <div class="card-result hidden">
-                            <div class="result-row market">
-                                <span class="result-label">Market Consensus:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label">Cincinnati 38%</span>
-                                    <span class="bar-label">Pittsburgh 62%</span>
+                        <div class="card-back" style="display:none;">
+                            <div class="card-category">Sports / NFL</div>
+                            <div class="your-pick"></div>
+                            <div class="result-section">
+                                <div class="result-row">
+                                    <span class="result-label">Market:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar market-bar" style="width: 38%;">
+                                            <span>Cincinnati 38%</span>
+                                        </div>
+                                        <div class="result-bar market-bar" style="width: 62%;">
+                                            <span>Pittsburgh 62%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-row liveevo-row">
+                                    <span class="result-label">Live-Evo:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar liveevo-bar winner" style="width: 55%;">
+                                            <span>Cincinnati 55%</span>
+                                        </div>
+                                        <div class="result-bar liveevo-bar" style="width: 45%;">
+                                            <span>Pittsburgh 45%</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="result-row liveevo">
-                                <span class="result-label">Live-Evo:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label correct">Cincinnati 55%</span>
-                                    <span class="bar-label">Pittsburgh 45%</span>
-                                </div>
-                            </div>
-                            <div class="result-outcome">
-                                <span class="outcome-label">Outcome:</span>
-                                <span class="outcome-value">Cincinnati Won</span>
+                            <div class="outcome-box">
+                                <span class="outcome-icon">&#10003;</span>
+                                <span>Cincinnati Won</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Card 2: Fed Rate -->
-                    <div class="prediction-game-card" data-card="2">
-                        <div class="card-category">Economics</div>
-                        <div class="card-question">
-                            <h4>Fed Rate Decision</h4>
-                            <p>Will the Fed cut rates in September 2025?</p>
+                    <div class="prediction-game-card" id="card-2">
+                        <div class="card-front">
+                            <div class="card-category">Economics</div>
+                            <div class="card-question">
+                                <h4>Fed Rate Decision</h4>
+                                <p>Will the Fed cut rates in September 2025?</p>
+                            </div>
+                            <div class="card-choices">
+                                <button class="choice-btn" onclick="revealCard('card-2', 'Yes, Cut', true)">Yes, Cut</button>
+                                <button class="choice-btn" onclick="revealCard('card-2', 'No, Hold', false)">No, Hold</button>
+                            </div>
                         </div>
-                        <div class="card-choices">
-                            <button class="choice-btn" data-choice="A" data-correct="true">Yes, Cut</button>
-                            <button class="choice-btn" data-choice="B">No, Hold</button>
-                        </div>
-                        <div class="card-result hidden">
-                            <div class="result-row market">
-                                <span class="result-label">Market Consensus:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label">Cut 45%</span>
-                                    <span class="bar-label">Hold 55%</span>
+                        <div class="card-back" style="display:none;">
+                            <div class="card-category">Economics</div>
+                            <div class="your-pick"></div>
+                            <div class="result-section">
+                                <div class="result-row">
+                                    <span class="result-label">Market:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar market-bar" style="width: 45%;">
+                                            <span>Cut 45%</span>
+                                        </div>
+                                        <div class="result-bar market-bar" style="width: 55%;">
+                                            <span>Hold 55%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-row liveevo-row">
+                                    <span class="result-label">Live-Evo:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar liveevo-bar winner" style="width: 62%;">
+                                            <span>Cut 62%</span>
+                                        </div>
+                                        <div class="result-bar liveevo-bar" style="width: 38%;">
+                                            <span>Hold 38%</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="result-row liveevo">
-                                <span class="result-label">Live-Evo:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label correct">Cut 62%</span>
-                                    <span class="bar-label">Hold 38%</span>
-                                </div>
-                            </div>
-                            <div class="result-outcome">
-                                <span class="outcome-label">Outcome:</span>
-                                <span class="outcome-value">Fed Cut 25bps</span>
+                            <div class="outcome-box">
+                                <span class="outcome-icon">&#10003;</span>
+                                <span>Fed Cut 25bps</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Card 3: Election -->
-                    <div class="prediction-game-card" data-card="3">
-                        <div class="card-category">Politics</div>
-                        <div class="card-question">
-                            <h4>Virginia Governor Race</h4>
-                            <p>Who will win the 2025 Virginia gubernatorial election?</p>
+                    <div class="prediction-game-card" id="card-3">
+                        <div class="card-front">
+                            <div class="card-category">Politics</div>
+                            <div class="card-question">
+                                <h4>Virginia Governor Race</h4>
+                                <p>Who will win the 2025 Virginia gubernatorial election?</p>
+                            </div>
+                            <div class="card-choices">
+                                <button class="choice-btn" onclick="revealCard('card-3', 'Democrat', true)">Democrat</button>
+                                <button class="choice-btn" onclick="revealCard('card-3', 'Republican', false)">Republican</button>
+                            </div>
                         </div>
-                        <div class="card-choices">
-                            <button class="choice-btn" data-choice="A" data-correct="true">Democrat</button>
-                            <button class="choice-btn" data-choice="B">Republican</button>
-                        </div>
-                        <div class="card-result hidden">
-                            <div class="result-row market">
-                                <span class="result-label">Market Consensus:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label">Dem 48%</span>
-                                    <span class="bar-label">Rep 52%</span>
+                        <div class="card-back" style="display:none;">
+                            <div class="card-category">Politics</div>
+                            <div class="your-pick"></div>
+                            <div class="result-section">
+                                <div class="result-row">
+                                    <span class="result-label">Market:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar market-bar" style="width: 48%;">
+                                            <span>Dem 48%</span>
+                                        </div>
+                                        <div class="result-bar market-bar" style="width: 52%;">
+                                            <span>Rep 52%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-row liveevo-row">
+                                    <span class="result-label">Live-Evo:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar liveevo-bar winner" style="width: 56%;">
+                                            <span>Dem 56%</span>
+                                        </div>
+                                        <div class="result-bar liveevo-bar" style="width: 44%;">
+                                            <span>Rep 44%</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="result-row liveevo">
-                                <span class="result-label">Live-Evo:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label correct">Dem 56%</span>
-                                    <span class="bar-label">Rep 44%</span>
-                                </div>
-                            </div>
-                            <div class="result-outcome">
-                                <span class="outcome-label">Outcome:</span>
-                                <span class="outcome-value">Democrat Won</span>
+                            <div class="outcome-box">
+                                <span class="outcome-icon">&#10003;</span>
+                                <span>Democrat Won</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Card 4: Tech -->
-                    <div class="prediction-game-card" data-card="4">
-                        <div class="card-category">Technology</div>
-                        <div class="card-question">
-                            <h4>Apple Earnings</h4>
-                            <p>Will Apple beat Q3 2025 revenue estimates?</p>
+                    <div class="prediction-game-card" id="card-4">
+                        <div class="card-front">
+                            <div class="card-category">Technology</div>
+                            <div class="card-question">
+                                <h4>Apple Earnings</h4>
+                                <p>Will Apple beat Q3 2025 revenue estimates?</p>
+                            </div>
+                            <div class="card-choices">
+                                <button class="choice-btn" onclick="revealCard('card-4', 'Yes, Beat', true)">Yes, Beat</button>
+                                <button class="choice-btn" onclick="revealCard('card-4', 'No, Miss', false)">No, Miss</button>
+                            </div>
                         </div>
-                        <div class="card-choices">
-                            <button class="choice-btn" data-choice="A" data-correct="true">Yes, Beat</button>
-                            <button class="choice-btn" data-choice="B">No, Miss</button>
-                        </div>
-                        <div class="card-result hidden">
-                            <div class="result-row market">
-                                <span class="result-label">Market Consensus:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label">Beat 52%</span>
-                                    <span class="bar-label">Miss 48%</span>
+                        <div class="card-back" style="display:none;">
+                            <div class="card-category">Technology</div>
+                            <div class="your-pick"></div>
+                            <div class="result-section">
+                                <div class="result-row">
+                                    <span class="result-label">Market:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar market-bar" style="width: 52%;">
+                                            <span>Beat 52%</span>
+                                        </div>
+                                        <div class="result-bar market-bar" style="width: 48%;">
+                                            <span>Miss 48%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="result-row liveevo-row">
+                                    <span class="result-label">Live-Evo:</span>
+                                    <div class="result-bar-container">
+                                        <div class="result-bar liveevo-bar winner" style="width: 71%;">
+                                            <span>Beat 71%</span>
+                                        </div>
+                                        <div class="result-bar liveevo-bar" style="width: 29%;">
+                                            <span>Miss 29%</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="result-row liveevo">
-                                <span class="result-label">Live-Evo:</span>
-                                <div class="result-bars">
-                                    <span class="bar-label correct">Beat 71%</span>
-                                    <span class="bar-label">Miss 29%</span>
-                                </div>
-                            </div>
-                            <div class="result-outcome">
-                                <span class="outcome-label">Outcome:</span>
-                                <span class="outcome-value">Apple Beat Estimates</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="game-score-section hidden" id="game-score">
-                    <div class="score-card">
-                        <h4>Your Results</h4>
-                        <div class="score-comparison">
-                            <div class="score-item you">
-                                <span class="score-label">You</span>
-                                <span class="score-value" id="your-score">0/4</span>
-                            </div>
-                            <div class="score-item market">
-                                <span class="score-label">Market</span>
-                                <span class="score-value">1/4</span>
-                            </div>
-                            <div class="score-item liveevo">
-                                <span class="score-label">Live-Evo</span>
-                                <span class="score-value">4/4</span>
+                            <div class="outcome-box">
+                                <span class="outcome-icon">&#10003;</span>
+                                <span>Apple Beat Estimates</span>
                             </div>
                         </div>
                     </div>
