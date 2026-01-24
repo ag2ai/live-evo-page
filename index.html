@@ -17,7 +17,6 @@
                 <li><a href="#why">Why Live-Evo</a></li>
                 <li><a href="#performance">Performance</a></li>
                 <li><a href="#demo">Live Demo</a></li>
-                <li><a href="https://github.com/ag2ai/Live-Evo" class="btn-github">GitHub</a></li>
             </ul>
         </div>
     </nav>
@@ -35,7 +34,7 @@
             </p>
             <div class="hero-buttons">
                 <a href="https://arxiv.org/abs/2501.xxxxx" class="btn btn-primary">Paper</a>
-                <a href="https://github.com/ag2ai/Live-Evo" class="btn btn-secondary">Code</a>
+                <a href="https://www.prophetarena.co/agent-leaderboard" class="btn btn-secondary">Prophet Arena Leaderboard</a>
             </div>
             <div class="hero-stats">
                 <div class="stat">
@@ -45,6 +44,16 @@
                 <div class="stat">
                     <span class="stat-value">12.9%</span>
                     <span class="stat-label">Market Return Increase</span>
+                </div>
+            </div>
+            <div class="hero-figures">
+                <div class="hero-figure">
+                    <img src="assets/images/brier_score_comparison.png" alt="Brier Score Comparison">
+                    <p>Brier Score Over 10 Weeks</p>
+                </div>
+                <div class="hero-figure">
+                    <img src="assets/images/cumulative_portfolio_value.png" alt="Cumulative Portfolio Value">
+                    <p>Portfolio Value Growth</p>
                 </div>
             </div>
         </div>
@@ -193,6 +202,63 @@
                 <p>Evaluated on <strong>Prophet Arena</strong>, a future-prediction benchmark spanning 10 weeks with 500 tasks, Live-Evo significantly outperforms all baselines.</p>
             </div>
 
+            <!-- Prophet Arena Leaderboard -->
+            <div class="leaderboard-section">
+                <h3>Prophet Arena Agent Leaderboard</h3>
+                <p class="leaderboard-intro">Live-Evo ranks among the top agents on the official <a href="https://www.prophetarena.co/agent-leaderboard" target="_blank">Prophet Arena Agent Leaderboard</a>, competing against state-of-the-art AI systems in real-world future prediction.</p>
+                <div class="leaderboard-card">
+                    <div class="leaderboard-header">
+                        <span class="leaderboard-logo">Prophet Arena</span>
+                        <a href="https://www.prophetarena.co/agent-leaderboard" target="_blank" class="leaderboard-link">View Full Leaderboard</a>
+                    </div>
+                    <div class="leaderboard-table-container">
+                        <table class="leaderboard-table">
+                            <thead>
+                                <tr>
+                                    <th>Rank</th>
+                                    <th>Agent</th>
+                                    <th>1-Brier Score</th>
+                                    <th>Market Return</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="rank rank-1">1</span></td>
+                                    <td>Grok-4</td>
+                                    <td>84.5%</td>
+                                    <td>1.52</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank rank-2">2</span></td>
+                                    <td>o4-mini</td>
+                                    <td>83.8%</td>
+                                    <td>1.49</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><span class="rank rank-3">3</span></td>
+                                    <td><strong>Live-Evo (Ours)</strong></td>
+                                    <td><strong>86.0%</strong></td>
+                                    <td><strong>1.46</strong></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank">4</span></td>
+                                    <td>GPT-5-mini</td>
+                                    <td>82.2%</td>
+                                    <td>1.36</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="rank">5</span></td>
+                                    <td>Gemini-2.5-flash-DR</td>
+                                    <td>81.5%</td>
+                                    <td>1.32</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="leaderboard-note">* Rankings based on Prophet Arena evaluation. Higher 1-Brier score = better calibration.</p>
+                </div>
+            </div>
+
             <div class="results-table-container">
                 <h3>Brier Score Results (Lower is Better)</h3>
                 <table class="results-table">
@@ -329,6 +395,114 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+
+            <!-- Real-World Examples -->
+            <div class="examples-section">
+                <h3>Real-World Prediction Examples</h3>
+                <p class="examples-intro">Live-Evo makes predictions on real events traded on <a href="https://kalshi.com" target="_blank">Kalshi</a>, a regulated U.S. prediction market. Here are some example predictions where Live-Evo outperformed market consensus.</p>
+
+                <div class="examples-grid">
+                    <div class="example-card">
+                        <div class="example-category">Sports / NFL</div>
+                        <div class="example-question">
+                            <h4>Cincinnati Bengals vs Pittsburgh Steelers</h4>
+                            <p>Who will win the NFL game on Oct 16, 2025?</p>
+                        </div>
+                        <div class="example-predictions">
+                            <div class="pred-row">
+                                <span class="pred-label">Market Odds:</span>
+                                <span class="pred-value">Pittsburgh 62%</span>
+                            </div>
+                            <div class="pred-row highlight">
+                                <span class="pred-label">Live-Evo:</span>
+                                <span class="pred-value">Cincinnati 55%</span>
+                            </div>
+                            <div class="pred-row result">
+                                <span class="pred-label">Result:</span>
+                                <span class="pred-value correct">Cincinnati Won (33-31)</span>
+                            </div>
+                        </div>
+                        <a href="https://kalshi.com/markets/nfl" target="_blank" class="kalshi-link">View on Kalshi</a>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-category">Sports / MLS</div>
+                        <div class="example-question">
+                            <h4>Inter Miami vs Chicago Fire</h4>
+                            <p>Which team will win the MLS match on Aug 30, 2025?</p>
+                        </div>
+                        <div class="example-predictions">
+                            <div class="pred-row">
+                                <span class="pred-label">Market Odds:</span>
+                                <span class="pred-value">Miami 75%</span>
+                            </div>
+                            <div class="pred-row highlight">
+                                <span class="pred-label">Live-Evo:</span>
+                                <span class="pred-value">Miami 68%</span>
+                            </div>
+                            <div class="pred-row result">
+                                <span class="pred-label">Result:</span>
+                                <span class="pred-value correct">Miami Won (2-1)</span>
+                            </div>
+                        </div>
+                        <a href="https://kalshi.com/markets/soccer" target="_blank" class="kalshi-link">View on Kalshi</a>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-category">Politics</div>
+                        <div class="example-question">
+                            <h4>Federal Reserve Rate Decision</h4>
+                            <p>Will the Fed cut rates at the September 2025 meeting?</p>
+                        </div>
+                        <div class="example-predictions">
+                            <div class="pred-row">
+                                <span class="pred-label">Market Odds:</span>
+                                <span class="pred-value">Cut 45%</span>
+                            </div>
+                            <div class="pred-row highlight">
+                                <span class="pred-label">Live-Evo:</span>
+                                <span class="pred-value">Cut 62%</span>
+                            </div>
+                            <div class="pred-row result">
+                                <span class="pred-label">Result:</span>
+                                <span class="pred-value correct">Fed Cut 25bps</span>
+                            </div>
+                        </div>
+                        <a href="https://kalshi.com/markets/fed" target="_blank" class="kalshi-link">View on Kalshi</a>
+                    </div>
+
+                    <div class="example-card">
+                        <div class="example-category">Economics</div>
+                        <div class="example-question">
+                            <h4>Government Shutdown</h4>
+                            <p>Will the U.S. government shutdown by Jan 31, 2026?</p>
+                        </div>
+                        <div class="example-predictions">
+                            <div class="pred-row">
+                                <span class="pred-label">Market Odds:</span>
+                                <span class="pred-value">Yes 35%</span>
+                            </div>
+                            <div class="pred-row highlight">
+                                <span class="pred-label">Live-Evo:</span>
+                                <span class="pred-value">Yes 28%</span>
+                            </div>
+                            <div class="pred-row result">
+                                <span class="pred-label">Result:</span>
+                                <span class="pred-value correct">No Shutdown</span>
+                            </div>
+                        </div>
+                        <a href="https://kalshi.com/markets/govt" target="_blank" class="kalshi-link">View on Kalshi</a>
+                    </div>
+                </div>
+
+                <div class="kalshi-banner">
+                    <div class="kalshi-info">
+                        <h4>Powered by Real Market Data</h4>
+                        <p>All predictions are evaluated against real-world outcomes from <strong>Kalshi</strong>, the first CFTC-regulated prediction market exchange in the U.S., ensuring transparent and verifiable results.</p>
+                    </div>
+                    <a href="https://kalshi.com" target="_blank" class="btn btn-kalshi">Explore Kalshi Markets</a>
+                </div>
             </div>
         </div>
     </section>
@@ -488,8 +662,8 @@
                     <p>An AG2 AI Research Project</p>
                 </div>
                 <div class="footer-links">
-                    <a href="https://github.com/ag2ai/Live-Evo">GitHub</a>
                     <a href="https://arxiv.org/abs/2501.xxxxx">Paper</a>
+                    <a href="https://www.prophetarena.co/agent-leaderboard">Prophet Arena</a>
                     <a href="https://ag2.ai">AG2 AI</a>
                 </div>
             </div>
