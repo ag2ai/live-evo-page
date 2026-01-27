@@ -81,12 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
         statsObserver.observe(stat);
     });
 
-    // Auto-advance demo (optional)
+    // Auto-advance demo with user interaction handling
     let autoAdvanceInterval;
+    let resumeTimeout;
     let currentStep = 1;
     const totalSteps = 5;
+    let isDemoVisible = false;
+    let userInteracted = false;
 
     const startAutoAdvance = () => {
+        if (autoAdvanceInterval) clearInterval(autoAdvanceInterval);
         autoAdvanceInterval = setInterval(() => {
             currentStep = currentStep >= totalSteps ? 1 : currentStep + 1;
             stepButtons.forEach(btn => btn.classList.remove('active'));
@@ -94,11 +98,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
             document.querySelector(`[data-step="${currentStep}"]`).classList.add('active');
             document.getElementById(`step-${currentStep}`).classList.add('active');
-        }, 5000);
+        }, 4000);
     };
 
     const stopAutoAdvance = () => {
         clearInterval(autoAdvanceInterval);
+        autoAdvanceInterval = null;
+    };
+
+    const scheduleResume = () => {
+        // Clear any existing resume timeout
+        if (resumeTimeout) clearTimeout(resumeTimeout);
+        // Resume auto-advance after 10 seconds of no interaction
+        resumeTimeout = setTimeout(() => {
+            if (isDemoVisible) {
+                userInteracted = false;
+                startAutoAdvance();
+            }
+        }, 10000);
     };
 
     // Start auto-advance when demo section is visible
@@ -106,8 +123,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const demoObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                startAutoAdvance();
+                isDemoVisible = true;
+                if (!userInteracted) {
+                    startAutoAdvance();
+                }
             } else {
+                isDemoVisible = false;
                 stopAutoAdvance();
             }
         });
@@ -115,11 +136,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     demoObserver.observe(demoSection);
 
-    // Stop auto-advance when user clicks a step button
+    // Handle user clicks - stop auto-advance and schedule resume
     stepButtons.forEach(button => {
         button.addEventListener('click', function() {
+            userInteracted = true;
             stopAutoAdvance();
             currentStep = parseInt(this.getAttribute('data-step'));
+            scheduleResume();
         });
     });
 });
