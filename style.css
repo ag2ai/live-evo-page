@@ -6,10 +6,10 @@
 }
 
 :root {
-    /* AG2 Color Palette */
+    /* Color Palette - Black, White & Sky Blue */
     --primary: #1d1c1b;
-    --secondary: #f0b429;
-    --accent: #7fc0ce;
+    --secondary: #0ea5e9;
+    --accent: #38bdf8;
     --background: #ffffff;
     --foreground: #1d1c1b;
 
@@ -228,8 +228,8 @@ body {
 
 /* Announcement Banner */
 .announcement-banner {
-    background: var(--secondary);
-    color: var(--primary);
+    background: var(--primary);
+    color: white;
     padding: 14px 24px;
     text-align: center;
     position: relative;
@@ -250,12 +250,11 @@ body {
 }
 
 .announcement-link {
-    color: var(--primary);
     text-decoration: none;
     font-weight: 700;
     transition: all 0.3s;
     padding: 8px 20px;
-    background: var(--primary);
+    background: var(--secondary);
     color: white;
     border-radius: var(--radius-full);
     font-size: 0.9rem;
@@ -454,8 +453,8 @@ body {
 }
 
 .diagram-box.memory {
-    background: #fef3c7;
-    color: #92400e;
+    background: #e0f2fe;
+    color: #0c4a6e;
 }
 
 .diagram-arrow {
@@ -612,7 +611,7 @@ body {
 }
 
 .results-table tr.highlight {
-    background: linear-gradient(90deg, #fef9c3 0%, #fef3c7 100%);
+    background: linear-gradient(90deg, #e0f2fe 0%, #e0f2fe 100%);
 }
 
 .results-table tr.highlight td {
@@ -748,7 +747,7 @@ body {
 }
 
 .task-box {
-    background: #fef9c3;
+    background: #e0f2fe;
     padding: 24px;
     border-radius: var(--radius-lg);
     border-left: 4px solid var(--secondary);
@@ -1133,7 +1132,7 @@ body {
 
 .choice-btn:hover {
     border-color: var(--secondary);
-    background: #fef9c3;
+    background: #e0f2fe;
 }
 
 .choice-btn:active {
