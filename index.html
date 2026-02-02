@@ -61,127 +61,6 @@
         </div>
     </section>
 
-    <!-- Framework Section -->
-    <section id="framework" class="framework">
-        <div class="container">
-            <h2>Our Framework</h2>
-            <p class="section-intro">
-                LIVE-EVO operates through a four-stage evolutionary loop: <strong>Retrieve</strong>, <strong>Compile</strong>, <strong>Act</strong>, and <strong>Update</strong>.
-            </p>
-
-            <div class="framework-image">
-                <img src="assets/images/fig2public.png" alt="Live-Evo Framework Architecture">
-            </div>
-
-            <div class="stages-grid">
-                <div class="stage-card">
-                    <div class="stage-number">1</div>
-                    <h3>Retrieve</h3>
-                    <p>Given a task, the agent generates queries to retrieve relevant question-experience pairs from the Experience Bank, weighted by learned experience scores.</p>
-                </div>
-                <div class="stage-card">
-                    <div class="stage-number">2</div>
-                    <h3>Compile</h3>
-                    <p>Retrieved experiences are compiled into a task-specific guideline, instructed by Meta-Guidelines that encode meta-heuristics for combining historical insights.</p>
-                </div>
-                <div class="stage-card">
-                    <div class="stage-number">3</div>
-                    <h3>Act</h3>
-                    <p>The agent performs ContrastiveEval by producing two independent predictions - one guided by the compiled guideline and one as a memory-free baseline.</p>
-                </div>
-                <div class="stage-card">
-                    <div class="stage-number">4</div>
-                    <h3>Update</h3>
-                    <p>Experience weights are updated based on observed performance gaps. If the guideline underperforms, a new meta-guideline is generated.</p>
-                </div>
-            </div>
-
-            <div class="memory-banks">
-                <div class="bank-card">
-                    <h3>Experience Bank</h3>
-                    <p>Stores past task interactions in a structured, reusable form. Each experience includes the question, failure reason, improvement suggestions, and missed information.</p>
-                </div>
-                <div class="bank-card">
-                    <h3>Meta-Guideline Bank</h3>
-                    <p>Stores higher-level composition instructions that specify how to transform retrieved experiences into task-adaptive guidelines under different conditions.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Live-Evo Section -->
-    <section id="why" class="why-section">
-        <div class="container">
-            <h2>Why Live-Evo?</h2>
-
-            <div class="comparison">
-                <div class="comparison-card traditional">
-                    <h3>Traditional Self-Evolving Memory</h3>
-                    <div class="comparison-diagram">
-                        <div class="diagram-row">
-                            <div class="diagram-box train">Train Set</div>
-                            <div class="diagram-arrow">Build</div>
-                            <div class="diagram-box memory">Memory</div>
-                            <div class="diagram-arrow">Test</div>
-                            <div class="diagram-box test">Test Set</div>
-                        </div>
-                    </div>
-                    <ul class="limitations">
-                        <li>Static train/test split</li>
-                        <li>Memory frozen at test time</li>
-                        <li>Brittle under distribution shift</li>
-                        <li>Cannot adapt to new patterns</li>
-                    </ul>
-                </div>
-
-                <div class="comparison-card live">
-                    <h3>Live-Evo (Our Approach)</h3>
-                    <div class="comparison-diagram">
-                        <div class="diagram-row continuous">
-                            <div class="week-box">Week 1</div>
-                            <div class="week-box">Week 2</div>
-                            <div class="week-box">...</div>
-                            <div class="week-box">Week k</div>
-                        </div>
-                        <div class="memory-evolve">Memory continuously evolves</div>
-                    </div>
-                    <ul class="advantages">
-                        <li>Continuous memory evolution</li>
-                        <li>Learns from streaming feedback</li>
-                        <li>Adapts to distribution shift</li>
-                        <li>Reinforcement-and-decay dynamics</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="key-innovations">
-                <h3>Key Innovations</h3>
-                <div class="innovations-grid">
-                    <div class="innovation-card">
-                        <div class="innovation-icon">&#x1F9E0;</div>
-                        <h4>Decoupled Memory</h4>
-                        <p>Separates <em>what happened</em> (Experience Bank) from <em>how to use it</em> (Meta-Guideline Bank)</p>
-                    </div>
-                    <div class="innovation-card">
-                        <div class="innovation-icon">&#x2696;</div>
-                        <h4>Contrastive Evaluation</h4>
-                        <p>Quantifies the causal impact of memory by comparing guided vs. memory-free predictions</p>
-                    </div>
-                    <div class="innovation-card">
-                        <div class="innovation-icon">&#x1F504;</div>
-                        <h4>Adaptive Weighting</h4>
-                        <p>Reinforces helpful experiences and gradually forgets misleading ones, like human memory</p>
-                    </div>
-                    <div class="innovation-card">
-                        <div class="innovation-icon">&#x2705;</div>
-                        <h4>Selective Acquisition</h4>
-                        <p>Only commits new experiences after re-evaluation confirms measurable improvement</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Performance Section -->
     <section id="performance" class="performance">
         <div class="container">
@@ -521,6 +400,127 @@
                                 <span>Apple Beat Estimates</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Framework Section -->
+    <section id="framework" class="framework">
+        <div class="container">
+            <h2>Our Framework</h2>
+            <p class="section-intro">
+                LIVE-EVO operates through a four-stage evolutionary loop: <strong>Retrieve</strong>, <strong>Compile</strong>, <strong>Act</strong>, and <strong>Update</strong>.
+            </p>
+
+            <div class="framework-image">
+                <img src="assets/images/fig2public.png" alt="Live-Evo Framework Architecture">
+            </div>
+
+            <div class="stages-grid">
+                <div class="stage-card">
+                    <div class="stage-number">1</div>
+                    <h3>Retrieve</h3>
+                    <p>Given a task, the agent generates queries to retrieve relevant question-experience pairs from the Experience Bank, weighted by learned experience scores.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">2</div>
+                    <h3>Compile</h3>
+                    <p>Retrieved experiences are compiled into a task-specific guideline, instructed by Meta-Guidelines that encode meta-heuristics for combining historical insights.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">3</div>
+                    <h3>Act</h3>
+                    <p>The agent performs ContrastiveEval by producing two independent predictions - one guided by the compiled guideline and one as a memory-free baseline.</p>
+                </div>
+                <div class="stage-card">
+                    <div class="stage-number">4</div>
+                    <h3>Update</h3>
+                    <p>Experience weights are updated based on observed performance gaps. If the guideline underperforms, a new meta-guideline is generated.</p>
+                </div>
+            </div>
+
+            <div class="memory-banks">
+                <div class="bank-card">
+                    <h3>Experience Bank</h3>
+                    <p>Stores past task interactions in a structured, reusable form. Each experience includes the question, failure reason, improvement suggestions, and missed information.</p>
+                </div>
+                <div class="bank-card">
+                    <h3>Meta-Guideline Bank</h3>
+                    <p>Stores higher-level composition instructions that specify how to transform retrieved experiences into task-adaptive guidelines under different conditions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Live-Evo Section -->
+    <section id="why" class="why-section">
+        <div class="container">
+            <h2>Why Live-Evo?</h2>
+
+            <div class="comparison">
+                <div class="comparison-card traditional">
+                    <h3>Traditional Self-Evolving Memory</h3>
+                    <div class="comparison-diagram">
+                        <div class="diagram-row">
+                            <div class="diagram-box train">Train Set</div>
+                            <div class="diagram-arrow">Build</div>
+                            <div class="diagram-box memory">Memory</div>
+                            <div class="diagram-arrow">Test</div>
+                            <div class="diagram-box test">Test Set</div>
+                        </div>
+                    </div>
+                    <ul class="limitations">
+                        <li>Static train/test split</li>
+                        <li>Memory frozen at test time</li>
+                        <li>Brittle under distribution shift</li>
+                        <li>Cannot adapt to new patterns</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-card live">
+                    <h3>Live-Evo (Our Approach)</h3>
+                    <div class="comparison-diagram">
+                        <div class="diagram-row continuous">
+                            <div class="week-box">Week 1</div>
+                            <div class="week-box">Week 2</div>
+                            <div class="week-box">...</div>
+                            <div class="week-box">Week k</div>
+                        </div>
+                        <div class="memory-evolve">Memory continuously evolves</div>
+                    </div>
+                    <ul class="advantages">
+                        <li>Continuous memory evolution</li>
+                        <li>Learns from streaming feedback</li>
+                        <li>Adapts to distribution shift</li>
+                        <li>Reinforcement-and-decay dynamics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="key-innovations">
+                <h3>Key Innovations</h3>
+                <div class="innovations-grid">
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x1F9E0;</div>
+                        <h4>Decoupled Memory</h4>
+                        <p>Separates <em>what happened</em> (Experience Bank) from <em>how to use it</em> (Meta-Guideline Bank)</p>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x2696;</div>
+                        <h4>Contrastive Evaluation</h4>
+                        <p>Quantifies the causal impact of memory by comparing guided vs. memory-free predictions</p>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x1F504;</div>
+                        <h4>Adaptive Weighting</h4>
+                        <p>Reinforces helpful experiences and gradually forgets misleading ones, like human memory</p>
+                    </div>
+                    <div class="innovation-card">
+                        <div class="innovation-icon">&#x2705;</div>
+                        <h4>Selective Acquisition</h4>
+                        <p>Only commits new experiences after re-evaluation confirms measurable improvement</p>
                     </div>
                 </div>
             </div>
